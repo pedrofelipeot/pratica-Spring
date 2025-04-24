@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import praticaSpring.praticaSpring.DTO.PostDTO;
 import praticaSpring.praticaSpring.DTO.PutDTO;
+import praticaSpring.praticaSpring.Mapper.MappearCarro;
 import praticaSpring.praticaSpring.Objeto.Carro;
 import praticaSpring.praticaSpring.repository.CarroRepository;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class Servico {
+    private final MappearCarro mappearCarro;
     private final CarroRepository carroRepository;
 
     public List<Carro> ListarTudo(){
@@ -25,7 +27,7 @@ public class Servico {
     }
 
     public Carro addCarro(PostDTO postDTO){
-         Carro carro = Carro.builder().nome(postDTO.getNome()).build();
+         Carro carro = mappearCarro.toCarro(postDTO);
          return carroRepository.save(carro);
     }
     public void delete(int id){
@@ -33,8 +35,7 @@ public class Servico {
     }
 
     public Carro Update(PutDTO putDTO){
-        Carro idCarro = BuscarPorId(putDTO.getId());
-        Carro carro = Carro.builder().id(idCarro.getId()).nome(putDTO.getNome()).build();
+        Carro carro = mappearCarro.toCarro(putDTO);
         return carroRepository.save(carro);
     }
 
