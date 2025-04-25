@@ -19,27 +19,33 @@ public class Controller {
     private final Servico carroService;
 
     @GetMapping
-    public ResponseEntity <List<Carro>> list(){
+    public ResponseEntity<List<Carro>> list() {
         return ResponseEntity.ok(carroService.ListarTudo());
     }
 
+    @GetMapping(path = "/procura")
+    public ResponseEntity<List<Carro>> listarNome(@RequestParam String nome) {
+        return ResponseEntity.ok(carroService.ListarNomes(nome));
+    }
+
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Carro> CarroId(@PathVariable int id){
+    public ResponseEntity<Carro> CarroId(@PathVariable int id) {
         return ResponseEntity.ok(carroService.BuscarPorId(id));
     }
+
     @PostMapping
-    public ResponseEntity<Carro> addCarro(@RequestBody PostDTO postDTO){
+    public ResponseEntity<Carro> addCarro(@RequestBody PostDTO postDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(carroService.addCarro(postDTO));
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable int id){
+    public ResponseEntity<Void> deletar(@PathVariable int id) {
         carroService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @PutMapping
-    public ResponseEntity<Carro> atualizar(@RequestBody PutDTO putDTO){
+    public ResponseEntity<Carro> atualizar(@RequestBody PutDTO putDTO) {
         return ResponseEntity.status(HttpStatus.OK).body(carroService.Update(putDTO));
     }
 

@@ -18,23 +18,28 @@ public class Servico {
     private final MappearCarro mappearCarro;
     private final CarroRepository carroRepository;
 
-    public List<Carro> ListarTudo(){
+    public List<Carro> ListarTudo() {
         return carroRepository.findAll();
     }
 
-    public Carro BuscarPorId(int id){
+    public List<Carro> ListarNomes(String nome) {
+        return carroRepository.findByNome(nome);
+    }
+
+    public Carro BuscarPorId(int id) {
         return carroRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Carro não encontrado"));
     }
 
-    public Carro addCarro(PostDTO postDTO){
-         Carro carro = mappearCarro.toCarro(postDTO);
-         return carroRepository.save(carro);
-    }
-    public void delete(int id){
-         carroRepository.delete(BuscarPorId(id));
+    public Carro addCarro(PostDTO postDTO) {
+        Carro carro = mappearCarro.toCarro(postDTO);
+        return carroRepository.save(carro);
     }
 
-    public Carro Update(PutDTO putDTO){
+    public void delete(int id) {
+        carroRepository.delete(BuscarPorId(id));
+    }
+
+    public Carro Update(PutDTO putDTO) {
         Carro carro = mappearCarro.toCarro(putDTO);
         return carroRepository.save(carro);
     }

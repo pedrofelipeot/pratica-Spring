@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 @SpringBootApplication
 public class PraticaSpringApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PraticaSpringApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PraticaSpringApplication.class, args);
+    }
 
 }

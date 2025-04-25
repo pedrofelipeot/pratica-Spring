@@ -9,5 +9,6 @@ import praticaSpring.praticaSpring.Objeto.Carro;
 public abstract class MappearCarro {
 
     public abstract Carro toCarro(PostDTO postDTO);
+
     public abstract Carro toCarro(PutDTO putDTO);
 }

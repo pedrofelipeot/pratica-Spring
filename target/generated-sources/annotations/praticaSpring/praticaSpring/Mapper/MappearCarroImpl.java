@@ -8,7 +8,7 @@ import praticaSpring.praticaSpring.Objeto.Carro;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-04-24T12:02:55-0300",
+    date = "2025-04-25T15:56:00-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.6 (Eclipse Adoptium)"
 )
 @Component
