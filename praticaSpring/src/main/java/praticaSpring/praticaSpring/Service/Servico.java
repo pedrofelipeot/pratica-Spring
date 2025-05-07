@@ -8,6 +8,7 @@ import praticaSpring.praticaSpring.DTO.PostDTO;
 import praticaSpring.praticaSpring.DTO.PutDTO;
 import praticaSpring.praticaSpring.Mapper.MappearCarro;
 import praticaSpring.praticaSpring.Objeto.Carro;
+import praticaSpring.praticaSpring.TratamentoErro.excecao;
 import praticaSpring.praticaSpring.repository.CarroRepository;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class Servico {
     }
 
     public Carro BuscarPorId(int id) {
-        return carroRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Carro não encontrado"));
+        return carroRepository.findById(id).orElseThrow(() -> new excecao("ID não encontrado"));
     }
 
     public Carro addCarro(PostDTO postDTO) {
